@@ -62,7 +62,7 @@ jobs:
             }]
 
       - name: Build with Maven
-        run: mvn -X clean package
+        run: mvn -e clean package
         env:
           GITHUB_USERNAME: ${{ vars.SIRIUS_BUILD_GITHUB_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.SIRIUS_BUILD_GITHUB_TOKEN }}
