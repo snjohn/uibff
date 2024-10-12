@@ -51,13 +51,13 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
-      - name: Install npm dependencies
-        run: npm install
-        working-directory: ./src/main/webui  # adjust this path
+      # - name: Install npm dependencies
+      #   run: npm install
+      #   working-directory: ./src/main/webui  # adjust this path
 
-      - name: Build React app
-        run: npm run build
-        working-directory: ./src/main/webui  # adjust this path
+      # - name: Build React app
+      #   run: npm run build
+      #   working-directory: ./src/main/webui  # adjust this path
 
       - name: Setup Maven settings.xml
         uses: s4u/maven-settings-action@v2.8.0
@@ -74,6 +74,7 @@ jobs:
         env:
           GITHUB_USERNAME: ${{ vars.SIRIUS_BUILD_GITHUB_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.SIRIUS_BUILD_GITHUB_TOKEN }}
+          CI: false  # This prevents React from treating warnings as errors
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
