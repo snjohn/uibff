@@ -11,6 +11,8 @@
 
 	<properties>
 		<java.version>17</java.version>
+        <node.version>v18.16.0</node.version>
+        <npm.version>9.5.1</npm.version>
 		<spring-boot.version>3.1.0</spring-boot.version>
 		<maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
 		<maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
@@ -145,8 +147,8 @@
 						</goals>
 						<phase>generate-resources</phase>
 						<configuration>
-							<nodeVersion>v18.8.0</nodeVersion>
-							<npmVersion>8.18.0</npmVersion>
+							<nodeVersion>${node.version}</nodeVersion>
+							<npmVersion>${npm.version}</npmVersion>
 						</configuration>
 					</execution>
 
@@ -164,7 +166,7 @@
 
 					<!-- build our production version -->
 					<execution>
-						<id>npm build</id>
+						<id>npm run build</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
@@ -175,7 +177,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<nodeVersion>v18.8.0</nodeVersion>
 					<workingDirectory>src/main/webui</workingDirectory>
                     <installDirectory>target</installDirectory>
 				</configuration>
@@ -187,13 +188,13 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>Copy JavaScript app into SpringBoot</id>
-						<phase>process-resources</phase>
+						<id>copy-resources</id>
+						<phase>process-classes</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>target/classes/static</outputDirectory>
+							<outputDirectory>${basedir}/target/classes/static</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/webui/build</directory>
