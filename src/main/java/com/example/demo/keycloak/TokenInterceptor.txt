@@ -1,0 +1,62 @@
+package com.example.demo.keycloak;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.client.ClientHttpRequestExecution;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Configuration
+public class TokenInterceptor implements ClientHttpRequestInterceptor  {
+
+    @Autowired
+    private OAuth2AuthorizedClientService authorizedClientService;
+
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                        ClientHttpRequestExecution execution) throws IOException {
+        // Get access token from wherever it's stored (e.g., SecurityContextHolder)
+        String accessToken = getAccessToken();
+        // Add access token to Authorization header
+        request.getHeaders().add("Authorization", "Bearer " + accessToken);
+        // Continue with the request
+        return execution.execute(request, body);
+    }
+
+    private String getAccessToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("TokenInterceptor.getAccessToken()>> Authentication: "+authentication);
+        if (authentication != null && authentication.isAuthenticated()) {
+            log.info("TokenInterceptor.getAccessToken()>> Principal: "+authentication.getPrincipal());
+            if (authentication instanceof OAuth2AuthenticationToken) {
+                OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+                log.info("TokenInterceptor.getAccessToken()>> authorizedClientService: "+authorizedClientService);
+                OAuth2AuthorizedClient authorizedClient = authorizedClientService.loadAuthorizedClient(
+                    oauthToken.getAuthorizedClientRegistrationId(), oauthToken.getName());
+                log.info("TokenInterceptor.getAccessToken()>> authorizedClient: "+authorizedClient);
+                if (authorizedClient != null) {
+                    log.info("TokenInterceptor.getAccessToken()>> Access Token: "+authorizedClient.getAccessToken());
+                    OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
+                    if (accessToken != null) {
+                        log.info("TokenInterceptor.getAccessToken()>> Token Value: "+accessToken.getTokenValue());
+                        return accessToken.getTokenValue();
+                    }
+                }
+            }
+            log.info("TokenInterceptor.getAccessToken()>> authorizedClientService: "+authorizedClientService);
+        }
+        return null;
+    }
+}

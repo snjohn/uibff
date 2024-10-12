@@ -1,0 +1,21 @@
+#container {
+    position: relative;
+}
+#copyright {
+    position: absolute;
+    bottom: 0;
+}
+.item-container {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+} 
+.item-left {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+.item-right {
+    display: flex;
+    justify-content: flex-end;
+}

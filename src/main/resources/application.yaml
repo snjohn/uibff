@@ -1,0 +1,51 @@
+### server port
+server: 
+    port: 8081
+
+spring: 
+    application: 
+        name: webuibff
+    profiles: 
+        active: local
+    security: 
+        oauth2: 
+            client: 
+                registration: 
+                    webuibff-client: 
+                        provider: keycloak
+                        client-id: amrutapp-webui
+                        authorization-grant-type: authorization_code
+                        client-secret: m4xrTC8di8ilDdI2e0DKjLD1FhCclHPX
+                        scope: openid,profile
+                        # user-name-attribute: preferred_username
+                provider: 
+                    keycloak: 
+                        issuer-uri: ${keycloak.server-url}/realms/${keycloak.realm}
+
+            resourceserver: 
+                jwt: 
+                    issuer-uri: ${keycloak.server-url}/realms/${keycloak.realm}
+
+    mvc: 
+        pathmatch: 
+            matching-strategy: ANT_PATH_MATCHER
+
+---
+spring:
+    config:
+        activate:
+            on-profile: "local"
+resource-uri: http://localhost:8088
+keycloak:
+    server-url: http://localhost:8080
+    realm: home-realm
+
+---
+spring:
+    config:
+        activate:
+            on-profile: "docker"
+resource-uri: http://gatewayserver:8088
+keycloak:
+    server-url: http://${KEYCLOAK_DOCKER_HOST}:8080
+    realm: home-realm

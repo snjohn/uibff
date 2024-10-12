@@ -1,0 +1,20 @@
+[
+    {"pkId":1,  "userid":"john",  "email":"sjjohn@dm.gov.ae", "firstname":"Simon", "lastname":"John", "rate":"280"},
+    {"pkId":2,  "userid":"admin",  "email":"sjjohn@dm.gov.ae", "firstname":"Administrator", "lastname":"Admin", "rate":"290"},
+    {"pkId":3,  "userid":"maher",  "email":"maneamatolla@dm.gov.ae", "firstname":"Maher", "lastname":"Ahmad", "rate":"300"},
+    {"pkId":4,  "userid":"salem",  "email":"smsalem@dm.gov.ae", "firstname":"Salem", "lastname":"Bedwawi", "rate":"350"},
+    {"pkId":5,  "userid":"athiyeh",  "email":"aawahab@dm.gov.ae", "firstname":"Tariq", "lastname":"Ali", "rate":"200"},
+    {"pkId":6,  "userid":"sara",  "email":"sdmarkhan@dm.gov.ae", "firstname":"Sara", "lastname":"Markhan", "rate":"230"},
+    {"pkId":7,  "userid":"amna",  "email":"amsharif@dm.gov.ae", "firstname":"Amna", "lastname":"Sharif", "rate":"250"},
+    {"pkId":8,  "userid":"sudqi",  "email":"sanameh@dm.gov.ae", "firstname":"Sudqi", "lastname":"Nameh", "rate":"210"},
+    {"pkId":9,  "userid":"waddah",  "email":"wmmishah@dm.gov.ae", "firstname":"Waddah", "lastname":"Mishah", "rate":"270"},
+    {"pkId":14,  "userid":"zaffin",  "email":"alzaffin@dm.gov.ae", "firstname":"Zaffin", "lastname":"Mohammed", "rate":"400"},
+    {"pkId":15,  "userid":"hazarooni",  "email":"hazarooni@dm.gov.ae", "firstname":"Huda", "lastname":"Zarooni", "rate":"300"},
+    {"pkId":16,  "userid":"nagergawi",  "email":"nagergawi@dm.gov.ae", "firstname":"Noora", "lastname":"Gergawi", "rate":"250"},
+    {"pkId":17,  "userid":"amhaj",  "email":"amhaj@dm.gov.ae", "firstname":"Abeer", "lastname":"Haj", "rate":"260"},
+    {"pkId":18,  "userid":"nehai",  "email":"nehai@dm.gov.ae", "firstname":"Noora", "lastname":"Hai", "rate":"220"},
+    {"pkId":19,  "userid":"aaabdulla1",  "email":"aaabdulla1@dm.gov.ae", "firstname":"Ahmed", "lastname":"Abdulla", "rate":"190"},
+    {"pkId":20,  "userid":"nsarjumand",  "email":"nsarjumand@dm.gov.ae", "firstname":"Nazli", "lastname":"Arjumand", "rate":"250"},
+    {"pkId":21,  "userid":"ybdaniel",  "email":"ybdaniel@dm.gov.ae", "firstname":"Jack", "lastname":"Daniel", "rate":"320"},
+    {"pkId":23,  "userid":"mamunshar",  "email":"mamunshar@dm.gov.ae", "firstname":"Mohammed", "lastname":"Akram", "rate":"200"}
+]
