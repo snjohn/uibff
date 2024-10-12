@@ -145,7 +145,6 @@
 						<goals>
 							<goal>install-node-and-npm</goal>
 						</goals>
-						<phase>generate-resources</phase>
 						<configuration>
 							<nodeVersion>${node.version}</nodeVersion>
 							<npmVersion>${npm.version}</npmVersion>
@@ -158,7 +157,6 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
-						<phase>generate-resources</phase>
 						<configuration>
 							<arguments>install</arguments>
 						</configuration>
@@ -170,7 +168,6 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
-						<phase>generate-resources</phase>
 						<configuration>
 							<arguments>run build</arguments>
 						</configuration>
